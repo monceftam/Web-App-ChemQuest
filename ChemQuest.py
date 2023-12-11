@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[26]:
+# In[1]:
 
 
 import numpy as np
@@ -24,7 +24,7 @@ from sklearn.metrics import classification_report, confusion_matrix
 from scipy.stats import mannwhitneyu
 
 
-# In[15]:
+# In[2]:
 
 
 def get_target_data(target_query):
@@ -32,7 +32,7 @@ def get_target_data(target_query):
     return pd.DataFrame.from_dict(target.search(target_query))
 
 
-# In[16]:
+# In["]:
 
 
 def get_activity_data(chembl_id, activity_type="IC50"):
@@ -40,7 +40,7 @@ def get_activity_data(chembl_id, activity_type="IC50"):
     return pd.DataFrame.from_dict(activity.filter(target_chembl_id=chembl_id).filter(standard_type=activity_type))
 
 
-# In[17]:
+# In[4]:
 
 
 def preprocess_activity_data(df):
@@ -50,7 +50,7 @@ def preprocess_activity_data(df):
     return df
 
 
-# In[18]:
+# In[5]:
 
 
 def remove_lower_outliers(df, column):
@@ -58,7 +58,7 @@ def remove_lower_outliers(df, column):
     return df[df[column] >= lower_bound]
 
 
-# In[19]:
+# In[6]:
 
 
 def classify_compounds(df, column):
@@ -68,7 +68,7 @@ def classify_compounds(df, column):
     return df, active_threshold
 
 
-# In[20]:
+# In[7]:
 
 
 def display_classification(df, pIC50_cutoff):
@@ -80,7 +80,7 @@ def display_classification(df, pIC50_cutoff):
     plt.show()
 
 
-# In[21]:
+# In[8]:
 
 
 def logistic_regression_analysis(df):
@@ -94,7 +94,7 @@ def logistic_regression_analysis(df):
     return model
 
 
-# In[22]:
+# In[9]:
 
 
 # Main execution flow
@@ -108,7 +108,7 @@ classified_df, active_cutoff = classify_compounds(filtered_df, 'pIC50')
 display_classification(classified_df, active_cutoff)
 
 
-# In[25]:
+# In[10]:
 
 
 # Perform logistic regression analysis
@@ -122,7 +122,7 @@ active_compounds_df.to_csv('active_insr_compounds.csv', index=False)
 print(active_compounds_df.head(10))
 
 
-# In[38]:
+# In[11]:
 
 
 def process_compounds(active_compounds_df):
@@ -163,7 +163,7 @@ def display_top_compounds_by_ligand_efficiency(filtered_df, n=20):
     print(top_compounds[columns_to_display])
 
 
-# In[39]:
+# In[12]:
 
 
 # Example usage
@@ -172,19 +172,7 @@ filtered_df = process_compounds(active_compounds_df)
 display_top_compounds_by_ligand_efficiency(filtered_df)
 
 
-# In[ ]:
 
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
 
 
 
